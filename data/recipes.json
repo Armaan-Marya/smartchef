@@ -1,0 +1,138 @@
+[
+  {
+    "id": "cheese-omelette",
+    "name": "Cheese Omelette",
+    "time": 15,
+    "difficulty": "Easy",
+    "ingredients": ["egg", "cheese", "butter", "salt", "pepper"],
+    "steps": [
+      "Beat the eggs in a bowl until they are well mixed.",
+      "Season with a pinch of salt and pepper.",
+      "Melt butter in a non-stick pan over medium heat.",
+      "Pour in the eggs and let them set for 1-2 minutes.",
+      "Sprinkle cheese over one half, fold the omelette over and slide onto a plate."
+    ]
+  },
+  {
+    "id": "tomato-frittata",
+    "name": "Tomato Frittata",
+    "time": 25,
+    "difficulty": "Easy",
+    "ingredients": ["egg", "tomato", "cheese", "onion", "salt", "pepper"],
+    "steps": [
+      "Preheat the oven to 180°C (350°F).",
+      "Whisk the eggs with salt and pepper in a bowl.",
+      "Sauté diced onion in an oven-safe pan until soft.",
+      "Add sliced tomato and cook for 2 minutes.",
+      "Pour in the eggs, sprinkle with cheese, and cook on the stove for 2 minutes.",
+      "Transfer the pan to the oven and bake for 12-15 minutes until set."
+    ]
+  },
+  {
+    "id": "cheesy-toast",
+    "name": "Cheesy Toast",
+    "time": 10,
+    "difficulty": "Easy",
+    "ingredients": ["bread", "cheese", "butter"],
+    "steps": [
+      "Butter one side of each slice of bread.",
+      "Place cheese between two slices, buttered sides facing out.",
+      "Toast in a pan over medium heat for 2-3 minutes per side.",
+      "Cook until the cheese has melted and the bread is golden brown."
+    ]
+  },
+  {
+    "id": "garlic-mushroom-pasta",
+    "name": "Garlic Mushroom Pasta",
+    "time": 25,
+    "difficulty": "Medium",
+    "ingredients": ["pasta", "mushroom", "garlic", "onion", "butter", "salt", "pepper"],
+    "steps": [
+      "Cook pasta in salted boiling water until al dente, then drain, reserving a cup of the water.",
+      "Melt butter in a pan and sauté chopped onion until translucent.",
+      "Add minced garlic and sliced mushroom, cooking until golden.",
+      "Toss the cooked pasta through the mushroom mixture, adding reserved water to loosen the sauce.",
+      "Season with salt and pepper and serve."
+    ]
+  },
+  {
+    "id": "veggie-stirfry",
+    "name": "Broccoli & Bell Pepper Stir-Fry",
+    "time": 20,
+    "difficulty": "Easy",
+    "ingredients": ["broccoli", "bell pepper", "garlic", "onion", "corn"],
+    "steps": [
+      "Heat oil in a wok or large pan over high heat.",
+      "Add chopped onion and garlic, stir-frying for 1 minute.",
+      "Add broccoli florets and sliced bell pepper, stir-frying for 4-5 minutes.",
+      "Add corn kernels and cook for a further 2 minutes.",
+      "Season to taste and serve over rice."
+    ]
+  },
+  {
+    "id": "caprese-salad",
+    "name": "Simple Caprese Salad",
+    "time": 10,
+    "difficulty": "Easy",
+    "ingredients": ["tomato", "cheese", "onion"],
+    "steps": [
+      "Slice the tomato and cheese into rounds of similar thickness.",
+      "Thinly slice the onion.",
+      "Arrange tomato, cheese and onion slices alternately on a plate.",
+      "Drizzle with olive oil and season with salt and pepper before serving."
+    ]
+  },
+  {
+    "id": "mushroom-omelette",
+    "name": "Mushroom & Onion Omelette",
+    "time": 15,
+    "difficulty": "Easy",
+    "ingredients": ["egg", "mushroom", "onion", "butter", "salt", "pepper"],
+    "steps": [
+      "Sauté sliced mushroom and onion in butter until softened, then set aside.",
+      "Beat the eggs with a pinch of salt and pepper.",
+      "Pour the eggs into a hot, buttered pan and let the edges set.",
+      "Add the mushroom and onion mixture over one half of the omelette.",
+      "Fold the omelette over and cook for another minute before serving."
+    ]
+  },
+  {
+    "id": "garlic-bread",
+    "name": "Garlic Bread",
+    "time": 15,
+    "difficulty": "Easy",
+    "ingredients": ["bread", "garlic", "butter"],
+    "steps": [
+      "Preheat the oven to 200°C (400°F).",
+      "Mix softened butter with minced garlic.",
+      "Spread the garlic butter generously over slices of bread.",
+      "Bake for 8-10 minutes until golden and crisp."
+    ]
+  },
+  {
+    "id": "fruit-salad",
+    "name": "Tropical Fruit Salad",
+    "time": 10,
+    "difficulty": "Easy",
+    "ingredients": ["banana", "strawberry", "pineapple", "orange"],
+    "steps": [
+      "Peel and slice the banana, pineapple and orange.",
+      "Hull and halve the strawberries.",
+      "Combine all the fruit in a bowl and toss gently.",
+      "Chill for 10 minutes before serving."
+    ]
+  },
+  {
+    "id": "corn-salsa",
+    "name": "Corn & Tomato Salsa",
+    "time": 15,
+    "difficulty": "Easy",
+    "ingredients": ["corn", "tomato", "onion", "garlic"],
+    "steps": [
+      "Char the corn kernels in a dry pan until lightly golden.",
+      "Finely dice the tomato and onion.",
+      "Mince the garlic and combine everything in a bowl.",
+      "Season with salt, a squeeze of lemon, and serve with tortilla chips."
+    ]
+  }
+]

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SmartChef — Cook with what you have</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="phone">
+
+  <!-- ============ HOME ============ -->
+  <section class="screen" id="screen-home" data-screen="home">
+    <header class="topbar">
+      <button class="icon-btn" aria-label="Menu">☰</button>
+      <span class="brand">SmartChef</span>
+      <button class="icon-btn" aria-label="Profile">👤</button>
+    </header>
+
+    <div class="hero">
+      <div class="hero-mark" aria-hidden="true">🍳</div>
+      <h1>SmartChef</h1>
+      <p class="hero-sub">Discover recipes you can cook right now, using what's already in your kitchen.</p>
+
+      <button class="btn btn-primary btn-icon" id="btn-scan">
+        <span class="btn-icon-glyph">📷</span> Scan my ingredients
+      </button>
+      <button class="btn btn-secondary btn-icon" id="btn-manual-search">
+        <span class="btn-icon-glyph">🔍</span> Search recipes manually
+      </button>
+    </div>
+
+    <p class="hint" id="model-status">Loading ingredient recognition model…</p>
+
+    <nav class="bottom-nav">
+      <button class="nav-item is-active" data-nav="home"><span>🏠</span>Home</button>
+      <button class="nav-item" data-nav="recipes-all"><span>📖</span>Recipes</button>
+      <button class="nav-item" data-nav="favourites"><span>♡</span>Favourites</button>
+      <button class="nav-item" data-nav="profile"><span>👤</span>Profile</button>
+    </nav>
+  </section>
+
+  <!-- ============ SCAN ============ -->
+  <section class="screen" id="screen-scan" data-screen="scan" hidden>
+    <header class="topbar">
+      <button class="icon-btn" data-back="home" aria-label="Back">←</button>
+      <span class="title">Scan ingredients</span>
+      <button class="icon-btn" id="btn-scan-help" aria-label="Help">?</button>
+    </header>
+
+    <div class="scan-body">
+      <p class="instruction">Take a clear photo of the ingredients you have.</p>
+
+      <div class="camera-frame">
+        <video id="camera-video" autoplay playsinline muted></video>
+        <canvas id="camera-canvas" hidden></canvas>
+        <div class="camera-placeholder" id="camera-placeholder">
+          <span>📷</span>
+          <p>Camera preview will appear here</p>
+        </div>
+        <div class="corner tl"></div><div class="corner tr"></div>
+        <div class="corner bl"></div><div class="corner br"></div>
+      </div>
+
+      <p class="tip">💡 Good lighting helps the model recognise ingredients.</p>
+
+      <button class="btn btn-primary btn-icon" id="btn-take-photo">
+        <span class="btn-icon-glyph">📷</span> Take photo
+      </button>
+      <div class="or-divider"><span>or</span></div>
+      <button class="btn btn-outline" id="btn-enter-manually">⌨ Enter ingredients manually</button>
+    </div>
+  </section>
+
+  <!-- ============ MANUAL ENTRY (also used as "search manually") ============ -->
+  <section class="screen" id="screen-manual" data-screen="manual" hidden>
+    <header class="topbar">
+      <button class="icon-btn" data-back="home" aria-label="Back">←</button>
+      <span class="title">Enter ingredients</span>
+      <span class="icon-btn" aria-hidden="true"></span>
+    </header>
+
+    <div class="manual-body">
+      <p class="instruction">Type an ingredient and press Enter or tap Add.</p>
+      <div class="manual-input-row">
+        <input type="text" id="manual-input" placeholder="e.g. egg, tomato, cheese" aria-label="Ingredient name">
+        <button class="btn btn-primary btn-compact" id="btn-add-manual">Add</button>
+      </div>
+      <ul class="tag-list" id="manual-tag-list" aria-live="polite"></ul>
+      <p class="hint" id="manual-empty-hint">No ingredients added yet.</p>
+      <button class="btn btn-primary" id="btn-manual-continue" disabled>Find recipes</button>
+    </div>
+  </section>
+
+  <!-- ============ CONFIRM ============ -->
+  <section class="screen" id="screen-confirm" data-screen="confirm" hidden>
+    <header class="topbar">
+      <button class="icon-btn" data-back="scan" aria-label="Back">←</button>
+      <span class="title">Your ingredients</span>
+      <button class="icon-btn" id="btn-confirm-edit" aria-label="Edit">Edit</button>
+    </header>
+
+    <div class="confirm-body">
+      <p class="instruction" id="confirm-instruction">We detected these ingredients. Please confirm or remove any.</p>
+      <ul class="ingredient-list" id="confirm-list" aria-live="polite"></ul>
+
+      <div class="manual-input-row add-more-row">
+        <input type="text" id="confirm-add-input" placeholder="+ Add ingredient" aria-label="Add another ingredient">
+        <button class="btn btn-secondary btn-compact" id="btn-confirm-add">Add</button>
+      </div>
+
+      <button class="btn btn-primary" id="btn-confirm-continue">Confirm ingredients</button>
+    </div>
+  </section>
+
+  <!-- ============ RECIPE RESULTS ============ -->
+  <section class="screen" id="screen-recipes" data-screen="recipes" hidden>
+    <header class="topbar">
+      <button class="icon-btn" data-back="confirm" aria-label="Back">←</button>
+      <span class="title">Recipes for you</span>
+      <span class="icon-btn" aria-hidden="true">▾</span>
+    </header>
+
+    <div class="recipes-body">
+      <p class="instruction">Based on your ingredients</p>
+      <ul class="chip-row" id="recipe-ingredient-chips"></ul>
+
+      <ul class="recipe-list" id="recipe-list"></ul>
+      <p class="hint" id="recipe-empty-hint" hidden>No close matches yet — try adding a few more ingredients.</p>
+
+      <p class="footer-link">
+        Not what you expected?
+        <button class="link-btn" id="btn-edit-ingredients">Edit ingredients</button>
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ COOKING MODE ============ -->
+  <section class="screen" id="screen-cooking" data-screen="cooking" hidden>
+    <header class="topbar">
+      <button class="icon-btn" data-back="recipes" aria-label="Back">←</button>
+      <span class="title" id="cooking-title">Recipe</span>
+      <button class="icon-btn" id="btn-favourite" aria-label="Favourite">♡</button>
+    </header>
+
+    <div class="cooking-body">
+      <p class="step-count" id="step-count">Step 1 of 5</p>
+      <div class="progress-dots" id="progress-dots"></div>
+
+      <div class="step-visual" id="step-visual" aria-hidden="true"></div>
+
+      <p class="step-text" id="step-text"></p>
+
+      <div class="step-controls">
+        <button class="btn btn-outline btn-compact" id="btn-prev-step">‹ Previous</button>
+        <button class="btn btn-primary btn-compact" id="btn-next-step">Next ›</button>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+<!-- TensorFlow.js + MobileNet — used entirely client-side, no API key required -->
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.20.0/dist/tf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet@2.1.1/dist/mobilenet.min.js"></script>
+
+<script src="js/camera.js"></script>
+<script src="js/recognition.js"></script>
+<script src="js/recipes.js"></script>
+<script src="js/cooking.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
