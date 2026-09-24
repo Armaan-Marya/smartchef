@@ -463,3 +463,7 @@ button { font-family: inherit; }
 .camera-placeholder[hidden] {
   display: none !important;
 }
+/* Respect the HTML hidden attribute */
+[hidden] {
+  display: none !important;
+}
