@@ -89,31 +89,60 @@
 
   // ---------------- Scan screen ----------------
   const video = document.getElementById("camera-video");
-  const canvas = document.getElementById("camera-canvas");
-  const placeholder = document.getElementById("camera-placeholder");
+const canvas = document.getElementById("camera-canvas");
+const placeholder = document.getElementById("camera-placeholder");
+const takePhotoBtn = document.getElementById("btn-take-photo");
 
   async function enterScanScreen() {
-    showScreen("scan");
-    if (!SmartChefCamera.isSupported()) {
-      placeholder.querySelector("p").textContent = "Camera not available on this device.";
-      placeholder.hidden = false;
-      return;
-    }
-    try {
-      placeholder.hidden = true;
-      await SmartChefCamera.start(video);
-    } catch (err) {
-      console.warn("Camera permission denied or unavailable:", err);
-      placeholder.querySelector("p").textContent = "Camera access was blocked — you can still enter ingredients manually.";
-      placeholder.hidden = false;
-    }
+
+  showScreen("scan");
+
+  takePhotoBtn.disabled = true;
+
+  if (!SmartChefCamera.isSupported()) {
+
+    placeholder.querySelector("p").textContent =
+      "Camera not available on this device.";
+
+    placeholder.hidden = false;
+
+    return;
   }
 
+  try {
+
+    placeholder.hidden = false;
+
+    placeholder.querySelector("p").textContent =
+      "Starting camera…";
+
+    await SmartChefCamera.start(video);
+
+    placeholder.hidden = true;
+
+    takePhotoBtn.disabled = false;
+
+  } catch (err) {
+
+    console.warn(
+      "Camera permission denied or unavailable:",
+      err
+    );
+
+    placeholder.querySelector("p").textContent =
+      "Camera access was blocked — you can still enter ingredients manually.";
+
+    placeholder.hidden = false;
+
+    takePhotoBtn.disabled = true;
+  }
+}
+
   document.getElementById("btn-take-photo").addEventListener("click", async () => {
-    if (video.readyState < 2) {
-      toast("Camera isn't ready yet — one moment.");
-      return;
-    }
+    if (!SmartChefCamera.isReady(video)) {
+  toast("Camera is still starting — one moment.");
+  return;
+}
     const frame = SmartChefCamera.capture(video, canvas);
     toast("Recognising ingredients…");
     try {
