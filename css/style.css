@@ -453,3 +453,13 @@ button { font-family: inherit; }
   .phone { width: 100%; min-height: 100vh; border-radius: 0; border: none; }
   .screen { min-height: 100vh; }
 }
+/* ---------- Hidden UI elements ---------- */
+/* The app uses the HTML hidden attribute to switch screens. */
+.screen[hidden] {
+  display: none !important;
+}
+
+/* Hide the camera placeholder when the real video stream is active. */
+.camera-placeholder[hidden] {
+  display: none !important;
+}
